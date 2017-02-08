@@ -47,11 +47,6 @@ def crop_negative_samples(filename, p1, p3):
 	rgb_name = ii.split('/')[-1]
 
 	img_rgb = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
-	# cv2.circle(img_rgb, tuple(p1), 5, (0, 0, 255), thickness=5)
-	# cv2.circle(img_rgb, tuple(p3), 5, (0, 255, 0), thickness=5)
-	# cv2.imshow('img', img_rgb)
-	# cv2.waitKey(0)
-
 	# p1 is the third point
 	# p3 is the first point
 	count = 0
@@ -60,26 +55,11 @@ def crop_negative_samples(filename, p1, p3):
 			if (i >= p3[0] and j >= p3[1] and i <= p1[0] and j <= p1[1]) or \
 					(i+CROP_HEIGHT >= p3[0] and j+CROP_WIDTH >= p3[1] and i+CROP_HEIGHT <= p1[0] and j+CROP_WIDTH <= p1[1]):
 				print (p3, p1, i, j)
-				# cv2.circle(img_rgb, tuple([i,j]), 5, (0, 0, 255), thickness=5)
-				# cv2.circle(img_rgb, tuple([i+CROP_HEIGHT, j+CROP_WIDTH]), 5, (0, 255, 0), thickness=5)
-				# cv2.imshow('img', img_rgb)
-				# cv2.waitKey(0)
-				# sys.exit(0)
 				print ('continue ------------------------------->')
 				continue
-			if count == 25:
-				img_rgb[ j:j + CROP_WIDTH, i: i + CROP_HEIGHT] = (255, 0, 0)
-				cv2.circle(img_rgb, tuple(p3), 10, (0, 0, 255), thickness=10)
-				cv2.circle(img_rgb, tuple(p1), 10, (0, 255, 0), thickness=10)
-				cv2.circle(img_rgb, tuple([i,j]), 5, (0, 0, 255), thickness=5)
-				cv2.circle(img_rgb, tuple([i+CROP_HEIGHT, j+CROP_WIDTH]), 5, (0, 255, 0), thickness=5)
-				cv2.imshow(rgb_name, img_rgb)
-				cv2.waitKey(0)
-				# sys.exit(0)
 			crop = img [j:j+CROP_WIDTH, i: i+CROP_HEIGHT]
 			cv2.imwrite(OUT_DIR + '/{}_{}_crop{}.png'.format(prefix,rgb_name,count), crop)
 			count += 1
-			#cv2.waitKey(0)
 	print ('Done ', rgb_name)
 if __name__ == '__main__':
 	load_file_names()
