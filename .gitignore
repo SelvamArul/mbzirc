@@ -1,0 +1,12 @@
+bags/*
+docs/*
+wrench_perception/data/*
+wrench_perception/nimbro_op/*
+wrench_perception/resource/*
+wrench_perception/catkin_ws/devel/*
+wrench_perception/catkin_ws/build/*
+.idea/*
+wrench_perception/.idea/*
+wrench_perception/catkin_ws/logs*
+wrench_perception/catkin_ws/.catkin_tools/*
+
